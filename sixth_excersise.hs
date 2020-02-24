@@ -36,5 +36,6 @@ pow :: Integer -> Integer -> Integer
 pow 0 2 = 0
 pow 0 0 = 0
 pow _ 0 = 1 
-pow num power = num + pow (num) (power-1)
+pow num power = num * pow num (power-1)
+
 
