@@ -75,5 +75,14 @@ length' [x]     = 1
 length' xs      = increment xs 0
 
 
+-- Redefine function minimum, which recursively searches for the least element in a list.
+-- minimum'[0] == 0
+-- minimum'[9, 3, 4, 1, 10] == 1
+
+minimum' :: [Int] -> Int
+minimum' [0] = 0
+minimum' (x:xs) = 
+
+
 
 
