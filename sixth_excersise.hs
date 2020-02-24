@@ -36,5 +36,25 @@ pow :: Integer -> Integer -> Integer
 pow 0 2 = 0
 pow 0 0 = 0
 pow _ 0 = 1 
-pow num power = num + pow (num) (power-1)
+pow num power = num * pow num (power-1)
+
+
+-- Define a function range, which lists all integers between two integers recursively.
+-- Do not use expression like[ .. ]. We assume the second parameter is not smaller than the first.
+-- range 5 9 == [5, 6, 7, 8, 9]
+-- range 5 5 == [5]
+-- range 0 3 == [0, 1, 2, 3]
+
+-- Change function range so that it can also produce a decreasing sequence when 
+-- the second parameter is smaller that the first.
+-- range 6 8 == [6, 7, 8]
+-- range 6 6 == [6]
+-- range 4 1 == [4, 3, 2, 1]
+
+
+range :: Int -> Int -> [Int]
+range x y 
+    | x == y    = [x]
+    | x < y     = x : range(x+1) y
+    | otherwise = x : range(x-1) y
 
