@@ -23,3 +23,18 @@ fib 1 = 1
 fib x = fib(x-1) + fib(x-2)
 
 
+-- Define the power function. In Haskell, this is operator ˆ, 
+-- now lets call our function pow. 
+-- Define recursively, do not use ˆ.
+-- pow 0 2 == 0
+-- pow 0 0 == 1
+-- pow 2 0 == 1
+-- pow 2 1 == 2
+-- pow 3 2 == 9
+
+pow :: Integer -> Integer -> Integer
+pow 0 2 = 0
+pow 0 0 = 0
+pow _ 0 = 1 
+pow num power = num + pow (num) (power-1)
+
