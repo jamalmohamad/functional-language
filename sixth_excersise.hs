@@ -58,3 +58,22 @@ range x y
     | x < y     = x : range(x+1) y
     | otherwise = x : range(x-1) y
 
+
+
+-- Redefine function length, which counts the length of a list.
+-- length'[]      == 0
+-- length'[5]     == 1
+-- length'[8,0,3] == 3
+
+increment :: [a] -> Int -> Int
+increment [] n          = n
+increment xs counter    = increment xs (counter+1)
+
+length' :: [Int] -> Int
+length' []      = 0
+length' [x]     = 1
+length' xs      = increment xs 0
+
+
+
+
