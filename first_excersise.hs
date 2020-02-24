@@ -71,4 +71,5 @@ pythagoreanTriple x y z = ((x^2) + (y^2)) == (z^2)
 -- not (isLeapYear 1800)
 
 
--- missed solution --
+isLeapYear :: Integer -> Bool
+isLeapYear x = ((mod x 4 == 0) && (mod x 100 /= 0)) || (mod x 4 == 0)
