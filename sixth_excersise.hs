@@ -44,7 +44,17 @@ pow num power = num * pow num (power-1)
 -- range 5 9 == [5, 6, 7, 8, 9]
 -- range 5 5 == [5]
 -- range 0 3 == [0, 1, 2, 3]
+
+-- Change function range so that it can also produce a decreasing sequence when 
+-- the second parameter is smaller that the first.
+-- range 6 8 == [6, 7, 8]
+-- range 6 6 == [6]
+-- range 4 1 == [4, 3, 2, 1]
+
+
 range :: Int -> Int -> [Int]
 range x y 
-    | x == y = [x]
-    | x < y = x : range(x+1) y
+    | x == y    = [x]
+    | x < y     = x : range(x+1) y
+    | otherwise = x : range(x-1) y
+
