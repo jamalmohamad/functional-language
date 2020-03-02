@@ -40,6 +40,14 @@ modDiv x y = (x `mod` y, x `div` y)
 -- Solve quadratic equations. Lets assume the equations have two real solutions.
 -- For example, solutions of x2−6x+ 8:
 -- quadratic 1.0 (-6.0) 8.0 == (2.0, 4.0)
+quadratic :: (Float, Float, Float) -> (Float, Float)
+quadratic (a, b, c) = (x2, x1)
+        where
+            x1 = e + sqrt d / (2 * a)
+            x2 = e - sqrt d / (2 * a)
+            d = b * b - 4 * a * c
+            e = - b / (2 * a)
+
 
 
 -- Measure the length of a vector that starts in the origin(0,0).
