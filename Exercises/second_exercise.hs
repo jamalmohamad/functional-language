@@ -17,3 +17,11 @@ add (a1, b1) (a2, b2)
     | b1 == b2 = ((a1 + a2), (b2))
 
 -- what is case of united denomenator?
+
+
+-- Define the multiplication of fractions.
+-- mul (1, 2) (1, 2) == (1, 4)
+-- mul (4, 3) (6, 5) == (24, 15)
+
+mul :: Frac -> Frac -> Frac
+mul (a1, b1) (a2, b2) = ((a1 * a2), (b1 * b2))
