@@ -42,6 +42,14 @@ modDiv x y = (x `mod` y, x `div` y)
 -- quadratic 1.0 (-6.0) 8.0 == (2.0, 4.0)
 
 
+-- Measure the length of a vector that starts in the origin(0,0).
+-- len (3, 4)  == 5.0
+-- len (4, 3)  == 5.0
+-- len (5, 12) == 13.0
+len :: Frac -> Int
+len (x, y) = if length[0..x] > length[0..y] then length[0..x] else length[0..y]
+
+
 
 -- Stretch a vector with a constant factor.
 -- stretch (2, 4) 2 == (4, 8)
