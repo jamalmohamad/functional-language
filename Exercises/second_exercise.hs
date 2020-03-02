@@ -53,6 +53,9 @@ quadratic (a, b, c) = (x2, x1)
 -- matches (4, 2) (4, 6)
 -- matches (6, 2) (4, 6)
 -- not (matches (2, 8) (4, 6))
+matches :: Frac -> Frac -> Bool
+matches (a1, b1) (a2, b2) = a1==a2 || (a1==b2) || b1==a2 || b1 == b2
+
 
 -- Measure the length of a vector that starts in the origin(0,0).
 -- len (3, 4)  == 5.0
@@ -60,6 +63,7 @@ quadratic (a, b, c) = (x2, x1)
 -- len (5, 12) == 13.0
 len :: Frac -> Int
 len (x, y) = if length[0..x] > length[0..y] then length[0..x] else length[0..y]
+len' (x, y) = sqrt(x*x + y*y) 
 
 
 
