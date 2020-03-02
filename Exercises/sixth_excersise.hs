@@ -22,6 +22,8 @@ fib 0 = 0
 fib 1 = 1
 fib x = fib(x-1) + fib(x-2)
 
+-- gives list of fibonoci numbers
+list' = [fib x | x <- [1..55]]
 
 -- Define the power function. In Haskell, this is operator ˆ, 
 -- now lets call our function pow. 
@@ -81,7 +83,7 @@ length' xs      = increment xs 0
 
 minimum' :: [Int] -> Int
 minimum' [0] = 0
-minimum' (x:xs) = 
+minimum' (x:xs) = undefined
 
 
 
