@@ -50,3 +50,13 @@ max' :: Int -> Int -> Int
 max' x y
     | x > y = x
     | otherwise = y
+
+min' :: Int -> Int -> Int
+min' a b
+    | a < b = a
+    | otherwise = b
+
+isLetterOrSpace :: Char -> Bool
+isLetterOrSpace chr 
+    | chr == ' ' = True
+    | otherwise = False
