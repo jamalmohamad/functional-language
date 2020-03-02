@@ -44,7 +44,7 @@ swap :: (Int, Int) -> (Int, Int)
 swap (x,y) = (y, x)
 
 swap3 :: (Int, (Int, Int)) -> ((Int, Int), Int)
-swap3 (a, (b, c)) = ((a, b), c)
+swap3 (a, (b, c)) = ((b, c), a)
 
 max' :: Int -> Int -> Int
 max' x y
