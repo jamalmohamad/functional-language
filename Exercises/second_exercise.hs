@@ -48,7 +48,11 @@ quadratic (a, b, c) = (x2, x1)
             d = b * b - 4 * a * c
             e = - b / (2 * a)
 
-
+-- Check whether two dominos match.
+-- matches (2, 4) (4, 6)
+-- matches (4, 2) (4, 6)
+-- matches (6, 2) (4, 6)
+-- not (matches (2, 8) (4, 6))
 
 -- Measure the length of a vector that starts in the origin(0,0).
 -- len (3, 4)  == 5.0
