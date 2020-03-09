@@ -33,7 +33,8 @@ tailInt (x : xs) = xs
 
 isEmpty :: [Int] -> Bool
 isEmpty [] = True
-isEmpty _ = False
+--isEmpty (_,_) = True
+--isEmpty _ = False
 
 -- length' :: [Int] -> Int
 length' xs = sum[1| _ <- xs]
@@ -46,7 +47,21 @@ countEven :: [Int] -> Int
 --countEven xs = length([n | n <- filter even xs])
 countEven xs = length(filter even xs)
 
--- sumOfSuqares [x,y,...] == x*x + y*y + ...
+-- sumOfSquares [x,y,...] == x*x + y*y + ...
 sumOfSquares :: [Int] -> Int
-sumOfSquares xs = sum[n * n | n <- xs] 
+sumOfSquares xs = sum[n * n | n <- xs]
+--sumOfSquares xs = sum(map(\x -> x*x) xs)
 
+allInteger :: [Int]
+allInteger = [1..]
+
+squares :: [Int]
+squares = [x*x | x <- allInteger]
+
+-- define isSquare using `elem`, to find if the number is square or not 
+isSquare :: Int -> Bool
+isSquare x
+    | x `elem` (take x squares) = True
+    | otherwise = False
+
+-- isSeq
