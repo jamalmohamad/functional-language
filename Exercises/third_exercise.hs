@@ -17,3 +17,7 @@ and' False True = False
 or' :: Bool -> Bool -> Bool
 or' True _ = True
 or' False False = False
+
+zip' []     _bs    = []
+zip' _as    []     = []
+zip' (a:as) (b:bs) = (a,b) : zip' as bs
