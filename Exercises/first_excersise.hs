@@ -52,8 +52,8 @@ triangleSides x y z
 -- pythagoreanTriple 3 4 5
 -- pythagoreanTriple 5 3 4
 -- not (pythagoreanTriple 2 3 4)
-pythagoreanTriple :: Int -> Int -> Int -> Bool
-pythagoreanTriple x y z = ((x^2) + (y^2)) == (z^2)
+pythagoreanTriple :: Integer -> Integer -> Integer -> Bool
+pythagoreanTriple x y z = x^2 + y^2 == z^2
 
 
 
