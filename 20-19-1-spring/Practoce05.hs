@@ -31,3 +31,21 @@ intersection xs ys = [x | x <- xs, y <- ys, x == y]
 -- union xs ys has both the elements of xs and ys
 union :: [Int] -> [Int] -> [Int]
 union xs ys = nub (sort (xs ++ ys))
+
+
+copy :: [Int] -> [Int]
+copy []       = []
+copy (x:xs) = x : copy xs
+
+
+bad :: [Int] -> [Int]
+bad xs = bad xs
+
+
+length' :: [Int] -> Int
+length' [] = 0
+length' (x:xs) = 1 + length' xs
+
+zip' :: [Int] -> [Int] -> [(Int, Int)]
+zip' []      []    = []
+zip' (x:xs) (y:ys) = (x, y) : zip' xs ys
