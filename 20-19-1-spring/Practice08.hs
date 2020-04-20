@@ -1,0 +1,75 @@
+module Practice08 where
+-- in this practice we will define a new data type
+
+data Three = One
+            | Two
+            | Three
+            deriving (Show, Eq, Ord)
+
+
+
+-- Maybe means handle error
+
+f1 :: Three -> Maybe Bool
+f1 One   = Nothing
+f1 Two   = Just False
+f1 Three = Just True
+
+-- f x y z = x
+
+
+-- f2 should be an inverse of f1
+-- f2 (f1 a) == a
+f2 :: Maybe Bool -> Three
+f2  x = undefined
+
+
+safeHead :: [a] -> Maybe a
+safeHead []    = Nothing
+safeHead (x:_) = Just x
+
+
+
+safeTail :: [a] -> Maybe [a]
+safeTail [] = Nothing
+safeTail (_:xs) = Just xs
+
+
+safeDiv :: Int -> Int -> Maybe Int
+safeDiv x y 
+    | y == 0    = Nothing
+    | otherwise = Just (x `div` y)
+
+
+
+
+-- safeIndex should be a safe version of (!!)
+-- safeIndex 0 [2,5] == Just 2
+-- safeIndex 1 [2,5] == Just 5
+-- safeIndex (-1) [2,5] == Nothing
+-- safeIndex 2 [2,5] == Nothing
+safeIndex :: Int -> [a] -> Maybe a
+safeIndex x [] = Nothing
+safeIndex x (a:as) 
+    | x == 0 = Just a 
+    | x < 0 = Nothing
+    | otherwise = Just ((a:as) !! x)
+
+
+unzip' :: [(a,b)] -> ([a],[b])
+unzip' l = ([a | (a,b) <- l], [b | (a,b) <- l])
+
+
+-- partitionAt
+partitionAt :: (Ord a) => a -> [a] -> ([a], [a])
+partitionAt n xs = (take n xs, drop n xs)
+
+sort :: Ord a => [a] -> [a]
+sort = undefined
+
+
+splitAt' :: (Ord a) => a -> [a] -> ([a],[a])
+splitAt' _  []     = ([], [])
+--splitAt' 1  (x:xs) = ([x], xs)
+splitAt' m  (x:xs) = splitAt' (m - 1) xs
+
