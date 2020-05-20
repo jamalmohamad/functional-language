@@ -12,7 +12,7 @@ The instructor may also ask questions from items other than the randomly chosen.
 
 ### 1. **What is a function? What is λ (lambda) calculus? Syntax of λ calculus.What is β (beta) reduction, and how does a function application evaluate in λ calculus?What is currying?What is the normal form of an expression? When do we say that an expression is reducible?** 
 ```
-In Haskell, Functions has one input and one output
+In Haskell, Functions has one input and one output -- maybe wrong
 
 -- add 1 2 == 3
 add :: Int -> Int -> Int
@@ -233,3 +233,42 @@ map' (\x -> x + 1) [1,2]
 
 
 ## **9. What does it mean to fold a list? What is the difference between folding from left and right? Define foldr with type declaration and demonstrate its use in an example. Define a recursive function over list using foldr. Define foldl with type declaration and demonstrate its use in an example.**
+
+
+-- fold a list means replace comma, with the + sign for example
+-- folds use function and default value
+
+
+-- foldl --> (-) 0 [1,2,3]
+-- ((0-1) - 2 ) - 3
+
+
+-- foldr --> (-) 0 [1,2,3]
+-- 1 - (2 - (3 - 0))
+
+
+foldl'' :: (b -> a -> b) -> b -> [a] -> b
+foldl''        f   default_      []   = default_
+foldl''        f   default_      (x:xs)   = foldl'' f (f  default_ x) xs
+
+
+
+foldr' :: (a -> b -> b) -> b -> [a] -> b
+foldr'           f         default_    []      = default_
+foldr'           f         default_    (x:xs)  = f x (foldr' f default_ xs)  
+
+
+
+
+
+
+map'' :: (a -> b) -> [a] -> [b]
+map''       f        []  =  []
+map''       f        xs  = foldr (\x xs -> (f x):xs) [] xs 
+
+
+
+
+filter''' :: (a -> Bool) -> [a] -> [a]
+filter'''         f         []  = []
+filter'''         f       xs    = foldr (\x xs -> if f x then x:xs else xs) [] xs
