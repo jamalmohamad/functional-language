@@ -12,77 +12,88 @@ The instructor may also ask questions from items other than the randomly chosen.
 
 ### 1. **What is a function? What is λ (lambda) calculus? Syntax of λ calculus.What is β (beta) reduction, and how does a function application evaluate in λ calculus?What is currying?What is the normal form of an expression? When do we say that an expression is reducible?** 
 ```
-In Haskell, Functions has one input and one output -- maybe wrong
+-- In Haskell, Functions has one input and one output
 
 -- add 1 2 == 3
+add :: Int -> Int -> Bool
+even   =   \x  ->  (x `mod` 2 == 0)
+
+
+-- lambda calculas
+-- indication that we are started to define a function, also known as anonymous function
+-- \a.a  \(input).(output)
+
+
+
+-- lambda calculus syntax
+-- variable              x
+-- abstraction           (\a.b) x    (a -> b) (x)
+-- application           f a   f(a)
+
+
+
+-- beta reduction
+-- take function and applying it to its argument
+-- ((\a.a) \b.\c.b)(x)\e.f
+--   = (\b.\c.b)   (x)\e.f
+--   = (\c.x)    \e.f
+--   = x
+--  beta normal form
+
+
+
+-- Currying
+f :: a -> b -> c
+-- to
+f :: (a -> b) -> c   -- curried function
+--   ^^^^^^^
+--   one arg
+
+
+-- normal form expression : x = x + 1, 1 + 1, 
+-- reducible expression : (\x -> x + 1)(7)  == 8 
+```
+
+
+
+
+### **2.Present the syntax of Haskell functions and constants. Show step-by-step evaluation of a function application. Show how functions can be used in infix and prefix form. What is precedence and associativity of an operator? What is the difference between left and right associativity?**
+```
+-- Present the syntax of Haskell functions and constants.
+-- let x = 1  -- constant
+
+-- f x = x
+-- f :: Int -> Int
+
+
+-- Show step-by-step evaluation of a function application.
+length' :: [Int] -> Int
+length'    []      = 0
+length'    (x:xs)      = 1 + length' xs 
+
+
+
+-- Show how functions can be used in infix and prefix form.
 add :: Int -> Int -> Int
-add     x     y   =  x + y
+-- add      x      y  = x + y     -- infix  form
+add      x      y  = (+) x y      -- prefix form
 
 
 
-example: 
-
-(\x -> 2*x*x + y)(7)
-
-(2*7*7 + y)
-
-subtitute value of 7  to every 'x' ocurrences
-
-normal form expression : x = x + 1, 1 + 1, 
-reducible expression : (+1) 4 
-```
+-- What is precedence and associativity of an operator?
+-- :info ^    precedence level 8,  associativity right
+-- :info *    precedence level 7, associativity left
 
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
-
-
-### 2. **Present the syntax of Haskell functions and constants.**
-
-```
--- function constants
-function declaration should be started with lower case only
-
-func :: Int -> Int     -- right
-Func :: Int -> Int     -- wrong
-
- 
--- pattern matching
-
-or'' :: Bool -> Bool -> Bool
-or'' True _    = True
-or'' _    True = True
-or'' _    _    = False
-
-
--- guards
-
-
--- where
-
+  
+-- What is the difference between left and right associativity?
+-- left  associative : (1 - 2) + 3 == 2
+-- right associative : 1 - (2 + 3) == -4
 
 
 ```
 
 
-
-
-### **Show step-by-step evaluation of a function application.**
-``` 
--- f "Haskell" == 7
-
-f :: String -> Int
-f     str  = length str
-```
-
-### **Show how functions can be used in infix and prefix form.**
-
-### **What is precedence and associativity of an operator? What is the difference between left and right associativity?**
-
-
-
-<hr>
 
 ### 3. **Define the notion of type. What are the predefined numeric types in Haskell?**
 
@@ -96,7 +107,9 @@ f     str  = length str
 
 
 
-<hr>
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ### **4. Present tuple types, their construction in Haskell expressions and how a function can pattern match on tuples. Present the list type, its data constructors, and how a function can pattern match on lists. What is the difference between tuples and lists? What is a list comprehension and how does it evaluate? How is the String type defined in Haskell?**
 
@@ -130,6 +143,9 @@ countTo10 = [x | x <- [1..10]]
 
 ```
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ### **5. Show how new data types can be defined in Haskell. What is a type constructor and data constructor? Present an example of new data type in Haskell. Show how functions can pattern match on values of the new data type. When do we say that a function is total or partial? Present the definition of the list type in Haskell. Make the type an instance of a type class without deriving.**
 
@@ -183,13 +199,51 @@ fact     x  = x * fact (x - 1)
 ```
 
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 
 ### **7. Present the three categories of types in Haskell. What is polymorphism and what kinds of polymorphism are supported in Haskell? Define a function for each kind of polymorphism. What makes a function polymorphic in Haskell? Demonstrate parametricity in Haskell. Present numeric literals in Haskell and their types. What operations can be used on a value given only the type class instances of its type but not the type itself?**
+```
+-- Types in Haskell
+-- 1. Integral Type       --> Integer(limitless) --> Int(fixed precision)
+-- 2. Fractional Type    --> Float, Double, Rational scintefic
+-- 2. Functional Type    --> Integer -> Integer -> Integer
 
 
 
 
-<hr>
+-- polymorphisim types
+-- 1. concerete          f :: Integer -> Integer
+-- 2. parametric         f :: a -> a
+-- 3. constraind         f :: Num a => a -> a
+
+
+
+-- polymorphisim
+-- Polymorphic functions can take arguments and return results of multiple types
+
+
+
+-- Operations
+-- Num == +, -, *
+-- Ord == >,<, <=, >=
+
+
+-- numeric literals
+-- :info Num
+
+-- typeclasses : Num, Ord, Eq, Show
+
+-- :t +d (+)
+
+```
+
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ### **8. What is a higher order function? Define a higher order function in Haskell. Define the function composition operator in Haskell together with its type and demonstrate its use in an expression. Define map and filter. What is an anonymous function? What are sections in Haskell?**
 ```
@@ -230,11 +284,13 @@ map' (\x -> x + 1) [1,2]
 ```
 
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
+### **9. What does it mean to fold a list? What is the difference between folding from left and right? Define foldr with type declaration and demonstrate its use in an example. Define a recursive function over list using foldr. Define foldl with type declaration and demonstrate its use in an example.**
 
-## **9. What does it mean to fold a list? What is the difference between folding from left and right? Define foldr with type declaration and demonstrate its use in an example. Define a recursive function over list using foldr. Define foldl with type declaration and demonstrate its use in an example.**
-
-
+```
 -- fold a list means replace comma, with the + sign for example
 -- folds use function and default value
 
@@ -272,3 +328,4 @@ map''       f        xs  = foldr (\x xs -> (f x):xs) [] xs
 filter''' :: (a -> Bool) -> [a] -> [a]
 filter'''         f         []  = []
 filter'''         f       xs    = foldr (\x xs -> if f x then x:xs else xs) [] xs
+```
