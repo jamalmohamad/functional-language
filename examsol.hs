@@ -88,3 +88,118 @@ add      x      y  = (+) x y      -- prefix form
 -- What is the difference between left and right associativity?
 -- left  associative : (1 - 2) + 3 == 2
 -- right associative : 1 - (2 + 3) == -4
+
+
+
+
+
+
+
+
+
+
+
+-- Define the notion of type. What are the predefined numeric types in Haskell?
+-- predefined numeric types
+-- Integer
+-- Double
+-- String
+-- Bool
+
+
+
+-- What is a type class?
+-- it is a set of functions like Num, Ord :info Num
+
+-- Present Num, Integral, Fractional, Eq, Ord and Show type classes.
+-- :info   Num
+-- :info Integral
+
+
+-- When do we say that a type has an instance of a type class?
+
+
+-- Define a new data type and make the type an instance of a type class without deriving.
+
+
+-- Present how function types are written in Haskell. What is currying in Haskell?
+f  :: Int -> Int -> Int
+f = undefined
+
+ff :: Num a => a -> a
+ff  x = x
+
+
+
+
+filter' :: (a -> Bool) -> [a] -> [a]     -- currying  
+--         ^^^^^^^^^^^
+--        arg as a function
+filter'         f         []      = []
+filter'         f        (x:xs)
+  | f x         = x : filter' f xs
+  | otherwise   = filter' f xs
+
+
+
+
+
+
+{-
+5. Show how new data types can be defined in Haskell.What is a type constructor and data constructor?Present an example of new data type in Haskell.Show how functions can pattern match on values of the new data type.When do we say that a function is total or partial?Present the definition of the list type in Haskell.Make the type an instance of a type class without deriving.
+-}
+
+
+
+-- Show how new data types can be defined in Haskell.
+-- let mike = Person {firstName = "Mike", age = 20}
+-- mike
+-- show mike
+
+data Person = Person { firstName :: String
+                     , age       :: Int
+                     }  deriving (Show, Read, Eq)
+
+
+type Name          = String
+type PhoneNumber   = String
+type PhoneBook     = [(Name, PhoneNumber)]
+
+inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
+inPhoneBook    name      pnum        pbook      = (name, pnum) `elem` pbook
+
+
+data TrafficLight = Red | Yellow | Green -- deriving (Show)
+
+instance Show TrafficLight where
+  show Red      = "Red light"
+  show Yellow   = "Yellow"
+  show Green    = "Green"
+
+
+
+
+
+
+-- total function   : involves passing all arguments
+-- partial function : involves passing less than the arguments
+
+add' :: Int -> Int -> Int
+add'     x     y    = x + y   -- total
+
+addOne = add' 1               -- partial
+
+
+
+
+-- list type
+-- ff :: [Int] -> [Int]
+-- ff :: [Char] -> Bool
+-- ff :: String -> String
+-- ff :: Num a => [a] -> Bool
+-- ff :: [Bool]
+
+
+
+
+

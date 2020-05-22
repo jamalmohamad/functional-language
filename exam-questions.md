@@ -95,21 +95,52 @@ add      x      y  = (+) x y      -- prefix form
 
 
 
-### 3. **Define the notion of type. What are the predefined numeric types in Haskell?**
+### 3. **Define the notion of type. What are the predefined numeric types in Haskell? What is a type class? Present Num, Integral, Fractional, Eq, Ord and Show type classes.When do we say that a type has an instance of a type class?Define a new data type and make the type an instance of a type class without deriving. Present how function types are written in Haskell. What is currying in Haskell?**
+
+```
+-- Define the notion of type. What are the predefined numeric types in Haskell?
+-- predefined numeric types
+-- Integer
+-- Double
+-- String
+-- Bool
 
 
-### **What is a type class? Present Num, Integral, Fractional, Eq, Ord and Show type classes.**
 
-### **When do we say that a type has an instance of a type class?**
+-- What is a type class?
+-- it is a set of functions like Num, Ord :info Num
+
+-- Present Num, Integral, Fractional, Eq, Ord and Show type classes.
+-- :info   Num
+-- :info Integral
 
 
-### **Define a new data type and make the type an instance of a type class without deriving. Present how function types are written in Haskell. What is currying in Haskell?**
+-- When do we say that a type has an instance of a type class?
+
+
+-- Define a new data type and make the type an instance of a type class without deriving.
 
 
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
+-- Present how function types are written in Haskell. What is currying in Haskell?
+f  :: Int -> Int -> Int
+f = undefined
+
+ff :: Num a => a -> a
+ff  x = x
+
+
+
+filter' :: (a -> Bool) -> [a] -> [a]     -- currying  
+--         ^^^^^^^^^^^
+--        arg as a function
+filter'         f         []      = []
+filter'         f        (x:xs)
+  | f x         = x : filter' f xs
+  | otherwise   = filter' f x
+
+```
+
 
 ### **4. Present tuple types, their construction in Haskell expressions and how a function can pattern match on tuples. Present the list type, its data constructors, and how a function can pattern match on lists. What is the difference between tuples and lists? What is a list comprehension and how does it evaluate? How is the String type defined in Haskell?**
 
@@ -143,14 +174,53 @@ countTo10 = [x | x <- [1..10]]
 
 ```
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ### **5. Show how new data types can be defined in Haskell. What is a type constructor and data constructor? Present an example of new data type in Haskell. Show how functions can pattern match on values of the new data type. When do we say that a function is total or partial? Present the definition of the list type in Haskell. Make the type an instance of a type class without deriving.**
 
 ```
+-- let mike = Person {firstName = "Mike", age = 20}
+-- mike
+-- show mike
 
+data Person = Person { firstName :: String
+                     , age       :: Int
+                     }  deriving (Show, Read, Eq)
+
+
+type Name          = String
+type PhoneNumber   = String
+type PhoneBook     = [(Name, PhoneNumber)]
+
+inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
+inPhoneBook    name      pnum        pbook      = (name, pnum) `elem` pbook
+
+
+data TrafficLight = Red | Yellow | Green -- deriving (Show)
+
+instance Show TrafficLight where
+  show Red      = "Red light"
+  show Yellow   = "Yellow"
+  show Green    = "Green"
+
+
+
+
+-- total function   : involves passing all arguments
+-- partial function : involves passing less than the arguments
+
+add' :: Int -> Int -> Int
+add'     x     y    = x + y   -- total
+
+addOne = add' 1               -- partial
+
+
+
+-- list type
+-- ff :: [Int] -> [Int]
+-- ff :: [Char] -> Bool
+-- ff :: String -> String
+-- ff :: Num a => [a] -> Bool
+-- ff :: [Bool]
 ```
 
 
